@@ -431,7 +431,13 @@ class SIPUAHelper extends EventManager {
   }
 
   void subscribe(String target, String event, String accept, {int? expires, String? contentType, String? allowEvents, Map<String, dynamic>? requestParams, List<String>? extraHeaders}) {
-    Subscriber s = _ua!.subscribe(target, event, accept, expires, contentType, allowEvents, requestParams, extraHeaders);
+
+    // Provide defaults if the optional values are null
+    final nonNullExpires = expires ?? 900;
+    final nonNullRequestParams = requestParams ?? <String, dynamic>{};
+    final nonNullExtraHeaders = extraHeaders ?? <String>[];
+
+    Subscriber s = _ua!.subscribe(target, event, accept, nonNullExpires, contentType, allowEvents, nonNullRequestParams, nonNullExtraHeaders);
 
     s.on(EventNotify(), (EventNotify event) {
       _notifyNotifyListeners(event);
