@@ -896,6 +896,9 @@ class UA extends EventManager {
     }
     // Contact URI.
     else {
+
+      _configuration.via_host = _configuration.uri?.host;
+
       _configuration.contact_uri = URI(
           'sip',
           Utils.createRandomToken(8),
