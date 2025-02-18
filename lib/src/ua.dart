@@ -896,12 +896,15 @@ class UA extends EventManager {
     }
     // Contact URI.
     else {
-      _configuration.contact_uri = URI(
-          'sip',
-          Utils.createRandomToken(8),
-          _configuration.via_host,
-          null,
-          <dynamic, dynamic>{'transport': transport});
+
+      _configuration.contact_uri = configuration.registrar_server;
+      
+      // _configuration.contact_uri = URI(
+      //     'sip',
+      //     Utils.createRandomToken(8),
+      //     _configuration.via_host,
+      //     null,
+      //     <dynamic, dynamic>{'transport': transport});
     }
     _contact = Contact(_configuration.contact_uri);
     return;
