@@ -890,14 +890,14 @@ class UA extends EventManager {
       transport = _socketTransport!.via_transport;
     }
 
-    // Via Host.
+   // Via Host.
     if (_configuration.contact_uri != null) {
       _configuration.via_host = _configuration.contact_uri!.host;
     }
     // Contact URI.
     else {
 
-      _configuration.via_host = _configuration.uri?.host;
+      _configuration.via_host = "${_configuration.uri?.host}:${_configuration.uri?.port}";
 
       _configuration.contact_uri = URI(
           'sip',

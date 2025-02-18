@@ -262,6 +262,11 @@ class OutgoingRequest {
         }
         supported.add('ice');
         break;
+
+       case SipMethod.SUBSCRIBE:
+        supported.add('path');
+        supported.add('replaces');
+        break;
       default:
         break;
     }
@@ -608,6 +613,13 @@ class IncomingRequest extends IncomingMessage {
           supported.add('ice');
         }
         supported.add('replaces');
+        break;
+
+
+      case SipMethod.SUBSCRIBE:
+        supported.add('path');
+        supported.add('replaces');
+
         break;
       default:
         break;
